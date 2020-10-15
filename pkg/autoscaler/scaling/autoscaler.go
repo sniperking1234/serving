@@ -176,8 +176,8 @@ func (a *autoscaler) Scale(ctx context.Context, now time.Time) ScaleResult {
 		pkgmetrics.RecordBatch(a.reporterCtx, stableRequestConcurrencyM.M(observedStableValue),
 			panicRequestConcurrencyM.M(observedPanicValue), targetRequestConcurrencyM.M(spec.TargetValue))
 	}
-	logger.Debugf("metricName = %s, observedStableValue = %0.3f, observedPanicValue = %0.3f",
-		metricName, observedStableValue, observedPanicValue)
+	logger.Debugf("metricName = %s, observedStableValue = %0.3f, observedPanicValue = %0.3f, targetValue = %0.3f",
+		metricName, observedStableValue, observedPanicValue, spec.TargetValue)
 
 	// Put the scaling metric to logs.
 	logger = logger.With(zap.String("metric", metricName))
